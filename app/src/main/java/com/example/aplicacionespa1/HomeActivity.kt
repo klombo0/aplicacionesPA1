@@ -34,7 +34,11 @@ import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.filled.AccountCircle
+import com.example.aplicacionespa1.ui.components.AppButton
+import com.example.aplicacionespa1.ui.components.AppCard
+import com.example.aplicacionespa1.ui.components.AppNavItem
 import com.example.aplicacionespa1.ui.components.SearchField
+import com.example.aplicacionespa1.ui.theme.SecondaryOrange
 
 class HomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,45 +79,10 @@ fun HomeScreen(onCategoriaClick: (String) -> Unit,
     Scaffold(
         bottomBar = {
             NavigationBar(containerColor = Color.White) {
-                NavigationBarItem(
-                    selected = true, onClick = {},
-                    icon = { Icon(Icons.Outlined.Home, contentDescription = "Home") },
-                    label = { Text("Home") },
-                    colors = NavigationBarItemDefaults.colors(
-                        selectedIconColor = Color(0xFF4D2303),
-                        selectedTextColor = Color(0xFF4D2303),
-                        unselectedIconColor = Color(0xFF565656),
-                        unselectedTextColor = Color(0xFF565656),
-                        indicatorColor = Color.Transparent
-                    )
-                )
-                NavigationBarItem(
-                    selected = false, onClick = {},
-                    icon = { Icon(Icons.Outlined.FavoriteBorder, contentDescription = "Favourite") },
-                    label = { Text("Favourite") },
-                    colors = NavigationBarItemDefaults.colors(
-                        unselectedIconColor = Color(0xFF565656),
-                        unselectedTextColor = Color(0xFF565656)
-                    )
-                )
-                NavigationBarItem(
-                    selected = false, onClick = {},
-                    icon = { Icon(Icons.Outlined.ShoppingCart, contentDescription = "Cart") },
-                    label = { Text("Cart") },
-                    colors = NavigationBarItemDefaults.colors(
-                        unselectedIconColor = Color(0xFF565656),
-                        unselectedTextColor = Color(0xFF565656)
-                    )
-                )
-                NavigationBarItem(
-                    selected = false, onClick = onVerPerfil,
-                    icon = { Icon(Icons.Outlined.Person, contentDescription = "Profile") },
-                    label = { Text("Profile") },
-                    colors = NavigationBarItemDefaults.colors(
-                        unselectedIconColor = Color(0xFF565656),
-                        unselectedTextColor = Color(0xFF565656)
-                    )
-                )
+                AppNavItem(true, {}, Icons.Outlined.Home, "Home")
+                AppNavItem(false, {}, Icons.Outlined.FavoriteBorder, "Favourite")
+                AppNavItem(false, {}, Icons.Outlined.ShoppingCart, "Cart")
+                AppNavItem(false, onVerPerfil, Icons.Outlined.Person, "Profile")
             }
         }
     ) { padding ->
@@ -200,19 +169,15 @@ fun HomeScreen(onCategoriaClick: (String) -> Unit,
                             fontSize = 12.sp
                         )
                     }
-                    Button(onClick = { onCategoriaClick("Bebidas") },
+                    AppButton(
+                        text = "Pedir Ahora",
+                        onClick = { onCategoriaClick("Bebidas") },
                         modifier = Modifier.height(36.dp),
+                        containerColor = SecondaryOrange,
                         shape = RoundedCornerShape(10.dp),
+                        fontSize = 12.sp,
                         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 0.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFFB15911)
-                        ))
-                    { Text(text = "Pedir Ahora",
-                            color = Color.White,
-                            fontSize = 12.sp,
-                            fontWeight = FontWeight.Medium
-                        )
-                    }
+                    )
                 }
             }
 
@@ -242,11 +207,13 @@ fun HomeScreen(onCategoriaClick: (String) -> Unit,
                             Text(producto.descripcion, fontSize = 11.sp, color = Color(0xFF565656), maxLines = 1)
                             Text("S/ ${producto.precio}", fontWeight = FontWeight.Bold, color = Color(0xFF4D2303))
                         }
-                        Button(
+                        AppButton(
+                            text = "Reorder",
                             onClick = {},
+                            modifier = Modifier,
                             shape = RoundedCornerShape(10.dp),
-                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4D2303))
-                        ) { Text("Reorder", fontSize = 11.sp) }
+                            fontSize = 11.sp,
+                        )
                     }
                 }
             }
@@ -254,11 +221,10 @@ fun HomeScreen(onCategoriaClick: (String) -> Unit,
             Spacer(modifier = Modifier.height(20.dp))
 
 
-            Card(
+            AppCard(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(18.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
-                border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFEDE0D4))
+                elevation = 0.dp,
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
                     Text(

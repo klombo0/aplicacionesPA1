@@ -30,6 +30,8 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.example.aplicacionespa1.ui.theme.*
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 /*inputs*/
 @Composable
@@ -56,7 +58,6 @@ fun AuthTextField(
             }
         }
     } else null
-
     Column(modifier = modifier.fillMaxWidth()) {
         Text(label, style = MaterialTheme.typography.titleMedium, color = TextDark)
         Spacer(modifier = Modifier.height(8.dp))
@@ -74,31 +75,32 @@ fun AuthTextField(
             trailingIcon = trailing,
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = PrimaryBrown,
-                unfocusedBorderColor = Color(0xFFBDBDBD),
+                unfocusedBorderColor = BorderGray,
                 cursorColor = PrimaryBrown,
             ),
         )
     }
 }
-
 /*cards*/
 @Composable
 fun AppCard(
     modifier: Modifier = Modifier,
     onClick: (() -> Unit)? = null,
     containerColor: Color = Color.White,
+    shape: Shape = RoundedCornerShape(14.dp),
+    border: BorderStroke? = BorderStroke(1.dp, BorderBeige),
+    elevation: Dp = 2.dp,
     content: @Composable ColumnScope.() -> Unit,
 ) {
     Card(
         modifier = if (onClick != null) modifier.clickable(onClick = onClick) else modifier,
-        shape = RoundedCornerShape(14.dp),
+        shape = shape,
         colors = CardDefaults.cardColors(containerColor = containerColor),
-        border = BorderStroke(1.dp, Color(0xFFEDE0D4)),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+        border = border,
+        elevation = CardDefaults.cardElevation(defaultElevation = elevation),
         content = content,
     )
 }
-
 @Composable
 fun SocialCard(
     @DrawableRes icon: Int,
@@ -113,7 +115,6 @@ fun SocialCard(
         )
     }
 }
-
 @Composable
 fun SocialLoginRow(
     @DrawableRes googleIcon: Int,
@@ -129,7 +130,6 @@ fun SocialLoginRow(
         SocialCard(facebookIcon, "Facebook", onFacebook)
     }
 }
-
 /* modal */
 @Composable
 fun AppModal(
@@ -176,7 +176,6 @@ fun AppModal(
         }
     }
 }
-
 /* cosas comunes*/
 @Composable
 fun AuthScreen(
@@ -191,17 +190,11 @@ fun AuthScreen(
             .imePadding()
             .padding(horizontal = 24.dp, vertical = 16.dp),
     ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            IconButton(onClick = onBack, modifier = Modifier.offset(x = (-12).dp)) {
-                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Volver", tint = PrimaryBrown)
-            }
-            Text(title, style = MaterialTheme.typography.headlineSmall, color = PrimaryBrown)
-        }
+        BackHeader(title = title, onBack = onBack)
         Spacer(modifier = Modifier.height(24.dp))
         content()
     }
 }
-
 @Composable
 fun AppButton(
     text: String,
@@ -269,5 +262,49 @@ fun SearchField(
         singleLine = true,
         modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(25.dp),
+    )
+}
+
+@Composable
+fun BackHeader(
+    title: String,
+    onBack: () -> Unit,
+    modifier: Modifier = Modifier,
+    titleColor: Color = PrimaryBrown,
+    iconSize: Dp = 24.dp,
+    iconOffset: Dp = (-12).dp,
+) {
+    Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
+        IconButton(onClick = onBack, modifier = Modifier.offset(x = iconOffset)) {
+            Icon(
+                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                contentDescription = "Volver",
+                tint = PrimaryBrown,
+                modifier = Modifier.size(iconSize),
+            )
+        }
+        Text(title, style = MaterialTheme.typography.headlineSmall, color = titleColor)
+    }
+}
+
+@Composable
+fun RowScope.AppNavItem(
+    selected: Boolean,
+    onClick: () -> Unit,
+    icon: ImageVector,
+    label: String,
+) {
+    NavigationBarItem(
+        selected = selected,
+        onClick = onClick,
+        icon = { Icon(icon, contentDescription = label) },
+        label = { Text(label) },
+        colors = NavigationBarItemDefaults.colors(
+            selectedIconColor = PrimaryBrown,
+            selectedTextColor = PrimaryBrown,
+            unselectedIconColor = TextGray,
+            unselectedTextColor = TextGray,
+            indicatorColor = Color.Transparent,
+        ),
     )
 }

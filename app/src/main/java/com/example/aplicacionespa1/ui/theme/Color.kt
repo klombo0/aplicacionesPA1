@@ -8,4 +8,6 @@ val TextDark = Color(0xFF333333)
 val TextGray = Color(0xFF565656)
 val BackgroundWhite = Color(0xFFFFFFFF)
 
-val CardBeige = Color(0xFFF5EDE4)
+val BorderBeige = Color(0xFFEDE0D4)
+
+val BorderGray = Color(0xFFBDBDBD)

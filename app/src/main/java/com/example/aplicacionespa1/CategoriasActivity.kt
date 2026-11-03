@@ -14,7 +14,6 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -26,10 +25,11 @@ import com.example.aplicacionespa1.model.Producto
 import com.example.aplicacionespa1.network.ApiClient
 import com.example.aplicacionespa1.ui.theme.AplicacionesPA1Theme
 import coil.compose.AsyncImage
-import androidx.compose.foundation.layout.offset
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import com.example.aplicacionespa1.ui.components.AppButton
+import com.example.aplicacionespa1.ui.components.BackHeader
 import com.example.aplicacionespa1.ui.components.SearchField
+import com.example.aplicacionespa1.ui.theme.BorderBeige
+import com.example.aplicacionespa1.ui.theme.TextDark
 
 class CategoriasActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +51,6 @@ class CategoriasActivity : ComponentActivity() {
         }
     }
 }
-
 @Composable
 fun CategoriasScreen(categoriaInicial: String, onBack: () -> Unit) {
     var productos by remember { mutableStateOf<List<Producto>>(emptyList()) }
@@ -69,41 +68,23 @@ fun CategoriasScreen(categoriaInicial: String, onBack: () -> Unit) {
         (categoriaSeleccionada == "Todos" || it.categoria == categoriaSeleccionada) &&
                 it.nombre.contains(busqueda, ignoreCase = true)
     }
-
     Column(modifier = Modifier.fillMaxSize().padding(horizontal = 20.dp)) {
-
         Spacer(modifier = Modifier.height(36.dp))
-
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            IconButton(
-                onClick = onBack,
-                modifier = Modifier.offset(x = (-8).dp)
-            ) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = "Volver",
-                    tint = Color(0xFF4D2303),
-                    modifier = Modifier.size(28.dp)
-                )
-            }
-            Text(
-                text = "Find Your Drink",
-                style = MaterialTheme.typography.headlineSmall,
-                color = Color(0xFF333333)
-            )
-        }
-
+        BackHeader(
+            title = "Find Your Drink",
+            onBack = onBack,
+            titleColor = TextDark,
+            iconSize = 28.dp,
+            iconOffset = (-8).dp,
+        )
         Spacer(modifier = Modifier.height(16.dp))
-
 
         SearchField(
             value = busqueda,
             onValueChange = { busqueda = it },
             placeholder = "Search For Espresso,...",
         )
-
         Spacer(modifier = Modifier.height(12.dp))
-
         LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             items(listOf("Todos", "Bebidas", "Granos", "Accesorios")) { cat ->
                 FilterChip(
@@ -117,7 +98,6 @@ fun CategoriasScreen(categoriaInicial: String, onBack: () -> Unit) {
                 )
             }
         }
-
         Spacer(modifier = Modifier.height(12.dp))
         Text("${filtrados.size} Item", color = Color(0xFFB15911), fontWeight = FontWeight.Medium)
         Spacer(modifier = Modifier.height(8.dp))
@@ -135,7 +115,7 @@ fun CategoriasScreen(categoriaInicial: String, onBack: () -> Unit) {
                         modifier = Modifier.padding(6.dp).fillMaxWidth(),
                         shape = RoundedCornerShape(18.dp),
                         colors = CardDefaults.cardColors(containerColor = Color.White),
-                        border = BorderStroke(1.dp, Color(0xFFEDE0D4))
+                        border = BorderStroke(1.dp, BorderBeige)
                     ) {
                         Column(modifier = Modifier.padding(10.dp)) {
                             AsyncImage(
@@ -154,12 +134,13 @@ fun CategoriasScreen(categoriaInicial: String, onBack: () -> Unit) {
                             Spacer(modifier = Modifier.height(6.dp))
                             Text("S/ ${producto.precio}", color = Color(0xFF4D2303), fontWeight = FontWeight.Bold)
                             Spacer(modifier = Modifier.height(6.dp))
-                            Button(
+                            AppButton(
+                                text = "Add To Cart",
                                 onClick = {},
                                 modifier = Modifier.fillMaxWidth(),
                                 shape = RoundedCornerShape(10.dp),
-                                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4D2303))
-                            ) { Text("Add To Cart", fontSize = 11.sp) }
+                                fontSize = 11.sp,
+                            )
                         }
                     }
                 }
