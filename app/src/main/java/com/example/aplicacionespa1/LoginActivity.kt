@@ -73,7 +73,7 @@ fun LoginScreen(onBack: () -> Unit, onLoginOk: () -> Unit, onIrSignUp: () -> Uni
 
         Spacer(modifier = Modifier.weight(1f))
 
-        AuthButton("Iniciar Sesión", onClick = {
+        AppButton("Iniciar Sesión", onClick = {
             errorEmail = if (!email.contains("@")) "Ingresa un correo válido" else null
             errorPassword = if (password.length < 6) "Mínimo 6 caracteres" else null
             if (errorEmail == null && errorPassword == null) {
@@ -117,7 +117,7 @@ fun LoginScreen(onBack: () -> Unit, onLoginOk: () -> Unit, onIrSignUp: () -> Uni
                 error = errorRecuperar
             )
             Spacer(modifier = Modifier.height(24.dp))
-            AuthButton("Confirmar Correo", onClick = {
+            AppButton("Confirmar Correo", onClick = {
                 if (!emailRecuperar.contains("@")) {
                     errorRecuperar = "Ingresa un correo válido"
                 } else {

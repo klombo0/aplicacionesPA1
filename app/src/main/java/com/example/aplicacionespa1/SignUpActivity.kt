@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.example.aplicacionespa1.network.ApiClient
@@ -78,7 +77,7 @@ fun SignUpScreen(onBack: () -> Unit, onRegistroOk: () -> Unit, onIrLogin: () -> 
 
         Spacer(modifier = Modifier.weight(1f))
 
-        AuthButton("Registrarse", onClick = {
+        AppButton("Registrarse", onClick = {
             errorNombre = if (nombre.isBlank()) "Ingresa tu nombre" else null
             errorEmail = if (!email.contains("@")) "Ingresa un correo válido" else null
             errorPassword = if (password.length < 6) "Mínimo 6 caracteres" else null

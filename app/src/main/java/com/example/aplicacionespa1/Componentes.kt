@@ -29,7 +29,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.example.aplicacionespa1.ui.theme.*
-
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.unit.TextUnit
 /*inputs*/
 @Composable
 fun AuthTextField(
@@ -202,17 +203,25 @@ fun AuthScreen(
 }
 
 @Composable
-fun AuthButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
+fun AppButton(
+    text: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier.fillMaxWidth().height(48.dp),
+    containerColor: Color = PrimaryBrown,
+    shape: Shape = RoundedCornerShape(12.dp),
+    fontSize: TextUnit = TextUnit.Unspecified,
+    contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
+) {
     Button(
         onClick = onClick,
-        modifier = modifier.fillMaxWidth().height(48.dp),
-        shape = RoundedCornerShape(12.dp),
-        colors = ButtonDefaults.buttonColors(containerColor = PrimaryBrown),
+        modifier = modifier,
+        shape = shape,
+        contentPadding = contentPadding,
+        colors = ButtonDefaults.buttonColors(containerColor = containerColor),
     ) {
-        Text(text, color = Color.White, style = MaterialTheme.typography.labelLarge)
+        Text(text, color = Color.White, fontSize = fontSize, style = MaterialTheme.typography.labelLarge)
     }
 }
-
 @Composable
 fun DividerWithText(text: String) {
     Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
