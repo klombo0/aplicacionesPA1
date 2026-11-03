@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">MaZaj</string>
+
+    <string name="empezar">Get Started</string>
+    <string name="logo">Logotipo</string>
+
+
+    <string name="terminos_condiciones">Términos y condiciones</string>
+    <string name="texto_terminos">
+        "1. USO DE LA APLICACIÓN
+Esta aplicación está destinada únicamente al uso personal para la consulta de productos, realización de pedidos de café, bebidas, granos y accesorios, así como para interactuar con nuestras funciones personalizadas.
+2. PRODUCTOS Y PRECIOS
+Todos los productos (bebidas, granos de café y accesorios) están sujetos a disponibilidad de stock. Nos reservamos el derecho de modificar los precios, promociones o descripciones en cualquier momento y sin previo aviso. Los precios mostrados están expresados en Soles (S/).
+3. PROPIEDAD INTELECTUAL
+Todo el contenido presente en esta aplicación, incluyendo logotipos, nombres comerciales ("MaZaj"), diseños de interfaz, imágenes de productos y textos, son propiedad exclusiva de MaZaj y están protegidos por las leyes de propiedad intelectual.
+4. PROTECCIÓN DE DATOS Y PRIVACIDAD
+Los datos recolectados durante la navegación y el proceso de compra se gestionarán garantizando la seguridad y confidencialidad del usuario, utilizados únicamente para procesar tus pedidos y mejorar tu experiencia.
+5. MODIFICACIONES A LOS TÉRMINOS
+MaZaj se reserva el derecho de actualizar estos Términos y Condiciones en cualquier momento. El uso continuado de la aplicación tras la publicación de cambios constituye la aceptación implícita de los mismos."</string>
+
+    <string name="aceptar_continuar">Aceptar y continuar</string>
+    <string name="volver">Volver</string>
+    <string name="title_activity_terminos">TerminosActivity</string>
+    <string name="title_activity_home">Home</string>
+    <string name="title_activity_categorias">CategoriasActivity</string>
+    <string name="title_activity_signupactivity">Signupactivity</string>
+    <string name="title_activity_loginactivity">Loginactivity</string>
+
+</resources>
