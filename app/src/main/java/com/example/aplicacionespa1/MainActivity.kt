@@ -12,8 +12,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -29,6 +27,8 @@ import androidx.compose.ui.unit.sp
 import com.example.aplicacionespa1.ui.theme.AplicacionesPA1Theme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import com.example.aplicacionespa1.ui.components.AppButton
+import com.example.aplicacionespa1.ui.theme.SecondaryOrange
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,24 +81,17 @@ fun MainScreen(
                 color = Color(0xFFB15911),
             )
         }
-
-        Button(
+        AppButton(
+            text = stringResource(R.string.empezar),
             onClick = onTerminosClick,
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(bottom = 55.dp)
                 .fillMaxWidth(0.7f)
                 .height(60.dp),
+            containerColor = SecondaryOrange,
             shape = RoundedCornerShape(30.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFFB15911),
-            ),
-        ) {
-            Text(
-                text = stringResource(R.string.empezar),
-                color = Color.White,
-                fontSize = 28.sp,
-            )
-        }
+            fontSize = 28.sp,
+        )
     }
 }

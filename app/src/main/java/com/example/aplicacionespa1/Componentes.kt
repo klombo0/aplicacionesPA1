@@ -254,3 +254,20 @@ fun AuthFooterLink(question: String, linkText: String, onClick: () -> Unit) {
         LinkText(linkText, onClick)
     }
 }
+
+@Composable
+fun SearchField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    placeholder: String,
+    modifier: Modifier = Modifier,
+) {
+    OutlinedTextField(
+        value = value,
+        onValueChange = onValueChange,
+        placeholder = { Text(placeholder) },
+        singleLine = true,
+        modifier = modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(25.dp),
+    )
+}

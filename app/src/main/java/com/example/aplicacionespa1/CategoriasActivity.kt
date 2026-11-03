@@ -29,6 +29,8 @@ import coil.compose.AsyncImage
 import androidx.compose.foundation.layout.offset
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import com.example.aplicacionespa1.ui.components.SearchField
+
 class CategoriasActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,12 +96,10 @@ fun CategoriasScreen(categoriaInicial: String, onBack: () -> Unit) {
         Spacer(modifier = Modifier.height(16.dp))
 
 
-        OutlinedTextField(
+        SearchField(
             value = busqueda,
             onValueChange = { busqueda = it },
-            placeholder = { Text("Search For Espresso,...") },
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(25.dp)
+            placeholder = "Search For Espresso,...",
         )
 
         Spacer(modifier = Modifier.height(12.dp))

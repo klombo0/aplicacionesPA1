@@ -34,6 +34,8 @@ import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.filled.AccountCircle
+import com.example.aplicacionespa1.ui.components.SearchField
+
 class HomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -144,12 +146,10 @@ fun HomeScreen(onCategoriaClick: (String) -> Unit,
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            OutlinedTextField(
+            SearchField(
                 value = "",
                 onValueChange = {},
-                placeholder = { Text("Search Drinks, Beans,...") },
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(25.dp)
+                placeholder = "Search Drinks, Beans,...",
             )
             errorCarga?.let {
                 Spacer(modifier = Modifier.height(8.dp))

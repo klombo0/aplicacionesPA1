@@ -6,22 +6,19 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.aplicacionespa1.ui.theme.AplicacionesPA1Theme
-
+import com.example.aplicacionespa1.ui.components.AppButton
+import com.example.aplicacionespa1.ui.theme.SecondaryOrange
 class TerminosActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,16 +50,10 @@ fun TerminosScreen(onAceptarClick: () -> Unit) {
             text = stringResource(R.string.texto_terminos),
             modifier = Modifier.padding(vertical = 16.dp),
         )
-        Button(
+        AppButton(
+            text = stringResource(R.string.aceptar_continuar),
             onClick = onAceptarClick,
-            modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFFB15911),
-            ),
-        ) {
-            Text(stringResource(R.string.aceptar_continuar),
-                color = Color.White,
-            )
-        }
+            containerColor = SecondaryOrange,
+        )
     }
 }
